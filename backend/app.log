@@ -1,0 +1,91 @@
+2025-07-05 19:16:03,030 - __main__ - INFO - Supabase client initialized successfully
+2025-07-05 19:16:42,098 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-05 19:17:51,083 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-05 19:17:51,417 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-05 19:17:51,593 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-05 19:19:57,803 - __main__ - INFO - Supabase client initialized successfully
+2025-07-05 19:20:21,989 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-05 19:20:31,783 - __main__ - INFO - Generating image from text: a starry sky n beachy place...
+2025-07-05 19:20:47,894 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-07-05 19:20:47,900 - __main__ - INFO - Successfully generated image with OpenAI DALL-E
+2025-07-05 19:21:37,784 - __main__ - INFO - LightX image generation request from 127.0.0.1: clear the background...
+2025-07-05 19:21:37,785 - __main__ - INFO - Created temporary image URL: http://localhost:8000/temp-image/a8e45c9b-c168-4c0f-ad61-1f6f2a25afc9
+2025-07-05 19:21:37,785 - __main__ - INFO - Calling LightX API with mode: image-enhancement
+2025-07-05 19:21:37,785 - __main__ - INFO - Making request to: https://api.lightxeditor.com/external/api/v1/background-generator
+2025-07-05 19:21:37,785 - __main__ - INFO - LightX demo mode enabled - returning demo response
+2025-07-05 19:22:18,909 - __main__ - INFO - Generating personalized recommendations for 18-25 couple group with $2000 budget
+2025-07-05 19:22:26,875 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-05 19:22:26,881 - __main__ - INFO - Successfully generated recommendations with 3 destinations
+2025-07-07 13:05:04,377 - __main__ - INFO - Supabase client initialized successfully
+2025-07-07 13:05:21,062 - __main__ - INFO - Supabase client initialized successfully
+2025-07-07 13:07:01,945 - __main__ - INFO - Supabase client initialized successfully
+2025-07-07 13:13:09,744 - __main__ - INFO - Supabase client initialized successfully
+2025-07-07 13:13:41,489 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 13:13:41,849 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 13:13:42,002 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=continent "HTTP/2 200 OK"
+2025-07-07 13:13:42,160 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.South+America "HTTP/2 200 OK"
+2025-07-07 13:13:42,437 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.Asia "HTTP/2 200 OK"
+2025-07-07 13:13:42,789 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.Europe "HTTP/2 200 OK"
+2025-07-07 13:13:42,789 - __main__ - INFO - Retrieved 3 continents from database
+2025-07-07 13:13:43,050 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 13:13:43,324 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=%2A&limit=50&order=name.asc "HTTP/2 200 OK"
+2025-07-07 13:13:43,326 - __main__ - INFO - Retrieved 5 destinations from database
+2025-07-07 13:14:16,372 - __main__ - INFO - Generating personalized recommendations for 18-25 solo group with $3000 budget
+2025-07-07 13:14:32,057 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-07 13:14:32,064 - __main__ - INFO - Successfully generated recommendations with 3 destinations
+2025-07-07 18:13:20,906 - __main__ - INFO - Supabase client initialized successfully
+2025-07-07 18:14:57,189 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:15:25,939 - __main__ - INFO - Generating image from text: picture me infront of paris...
+2025-07-07 18:15:29,865 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 502 Bad Gateway"
+2025-07-07 18:15:29,866 - openai._base_client - INFO - Retrying request to /images/generations in 0.496058 seconds
+2025-07-07 18:15:51,869 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-07-07 18:15:51,879 - __main__ - INFO - Successfully generated image with OpenAI DALL-E
+2025-07-07 18:17:04,186 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:17:04,472 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:17:04,620 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:17:04,898 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=continent "HTTP/2 200 OK"
+2025-07-07 18:17:05,169 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.Asia "HTTP/2 200 OK"
+2025-07-07 18:17:05,311 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.Europe "HTTP/2 200 OK"
+2025-07-07 18:17:05,566 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&continent=eq.South+America "HTTP/2 200 OK"
+2025-07-07 18:17:05,568 - __main__ - INFO - Retrieved 3 continents from database
+2025-07-07 18:17:05,864 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=%2A&limit=50&order=name.asc "HTTP/2 200 OK"
+2025-07-07 18:17:05,865 - __main__ - INFO - Retrieved 5 destinations from database
+2025-07-07 18:18:36,492 - __main__ - INFO - Generating personalized recommendations for 18-25 couple group with $3000 budget
+2025-07-07 18:18:46,255 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-07 18:18:46,264 - __main__ - INFO - Successfully generated recommendations with 3 destinations
+2025-07-07 18:19:54,830 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:19:55,167 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 18:19:55,438 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/user_visualizations?select=%2A%2Cdestinations%28id%2Cname%2Ccountry%2Ccity%2Ccontinent%29&order=created_at.desc&limit=20 "HTTP/2 200 OK"
+2025-07-07 18:19:55,439 - __main__ - INFO - Retrieved 0 visualizations from database
+2025-07-07 18:20:00,118 - httpx - INFO - HTTP Request: GET https://yigciabzkcpolbmisyis.supabase.co/rest/v1/destinations?select=id&limit=1 "HTTP/2 200 OK"
+2025-07-07 20:22:54,719 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-07 20:32:47,395 - __main__ - INFO - Returning 6 mock continents
+2025-07-07 20:33:42,608 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-07 20:33:42,623 - __main__ - INFO - OpenAI generated destinations: [
+  {
+    "id": "7a60f7d9-4da8-4b1e-9e22-6d7a4f6b6d32",
+    "name": "Santorini Bliss",
+    "country": "Greece",
+    "city": "Santorini",
+    "continent": "Europe",
+    "description": "Experience the b...
+2025-07-07 20:33:42,625 - __main__ - WARNING - Could not parse JSON from OpenAI response: Expecting ',' delimiter: line 117 column 83 (char 5964)
+2025-07-07 20:33:42,628 - __main__ - INFO - Extracted 9 destinations from malformed JSON
+2025-07-07 20:33:42,631 - __main__ - INFO - Generated 9 destinations with OpenAI
+2025-07-07 21:39:41,983 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-07 21:49:36,069 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-07 22:12:04,923 - __main__ - INFO - Photo upload request received
+2025-07-07 22:12:05,067 - __main__ - INFO - Photo processed successfully (mock storage): user_82d59819-4a7d-47a5-bfe9-5a7056d31371.jpg
+2025-07-07 22:15:50,833 - __main__ - INFO - Returning 6 mock continents
+2025-07-07 22:16:20,026 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-07 22:16:20,083 - __main__ - INFO - OpenAI generated destinations: [
+  {
+    "id": "f3b9e8bb-5b3d-41b3-bb3e-6e9d060e7c1b",
+    "name": "Santorini Bliss",
+    "country": "Greece",
+    "city": "Santorini",
+    "continent": "Europe",
+    "description": "Explore the stun...
+2025-07-07 22:16:20,084 - __main__ - WARNING - Could not parse JSON from OpenAI response: Expecting ',' delimiter: line 117 column 109 (char 6151)
+2025-07-07 22:16:20,085 - __main__ - INFO - Extracted 9 destinations from malformed JSON
+2025-07-07 22:16:20,085 - __main__ - INFO - Generated 9 destinations with OpenAI
