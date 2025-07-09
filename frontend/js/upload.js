@@ -823,7 +823,15 @@ class UploadPage {
         uiComponents.showToast("Please upload a selfie.", "error");
         return;
       }
-      if (!promptInput.value || promptInput.value.trim().length < 10) {
+      const promptValue = promptInput.value.trim();
+      console.log("Prompt validation:", {
+        rawValue: promptInput.value,
+        trimmedValue: promptValue,
+        length: promptValue.length,
+        isValid: promptValue.length >= 10,
+      });
+
+      if (!promptValue || promptValue.length < 10) {
         uiComponents.showToast(
           "Please enter a prompt (at least 10 characters).",
           "error"
@@ -834,34 +842,33 @@ class UploadPage {
       loadingDiv.style.display = "block";
       imagesGrid.innerHTML = "";
       try {
-        // 1. Upload selfie to backend
-        const formData = new FormData();
-        formData.append("file", fileInput.files[0]);
-        const uploadResp = await fetch("/api/upload-photo", {
-          method: "POST",
-          body: formData,
-        });
-        const uploadData = await uploadResp.json();
-        if (!uploadData.success || !uploadData.photo_url) {
-          throw new Error("Photo upload failed");
-        }
-        // 2. Call generate-visualization
-        const vizResp = await fetch("/api/generate-visualization", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_photo_url: uploadData.photo_url,
-            prompt: promptInput.value.trim(),
-          }),
-        });
-        const vizData = await vizResp.json();
-        if (!vizData.success || !vizData.visualization_url) {
+        // Call the new photo app image generator endpoint
+        const result = await this.api.generatePhotoAppImage(
+          fileInput.files[0],
+          promptValue
+        );
+        if (
+          !result.success ||
+          !result.image_urls ||
+          result.image_urls.length === 0
+        ) {
           throw new Error(
-            "Visualization failed: " + (vizData.detail || "Unknown error")
+            "Image generation failed: " + (result.error || "Unknown error")
           );
         }
-        // 3. Display generated image
-        imagesGrid.innerHTML = `<div class=\"preview-container\"><img src=\"${vizData.visualization_url}\" alt=\"Visualization\" class=\"preview-image\"></div>`;
+        // Display generated images
+        const backendBaseUrl = "http://localhost:8000";
+        imagesGrid.innerHTML = result.image_urls
+          .map(
+            (url) =>
+              `<div class=\"preview-container\">
+             <img src=\"${backendBaseUrl}${url}\" alt=\"Visualization\" class=\"preview-image\">
+             <button class=\"generated-action-btn\" onclick=\"uploadPage.downloadImage('${backendBaseUrl}${url}', 'AI Travel Visualization')\">
+               <i class=\"fas fa-download\"></i> Download
+             </button>
+           </div>`
+          )
+          .join("");
         uiComponents.showToast("Visualization generated!", "success");
       } catch (err) {
         imagesGrid.innerHTML = `<div class=\"placeholder-message\"><i class=\"fas fa-exclamation-triangle\"></i><p>${err.message}</p></div>`;

@@ -89,3 +89,53 @@
 2025-07-07 22:16:20,084 - __main__ - WARNING - Could not parse JSON from OpenAI response: Expecting ',' delimiter: line 117 column 109 (char 6151)
 2025-07-07 22:16:20,085 - __main__ - INFO - Extracted 9 destinations from malformed JSON
 2025-07-07 22:16:20,085 - __main__ - INFO - Generated 9 destinations with OpenAI
+2025-07-08 16:23:02,140 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 20:25:15,442 - __main__ - INFO - Photo upload request received
+2025-07-08 20:25:16,246 - __main__ - INFO - Photo processed successfully (mock storage): user_6ff07043-5c2a-469d-a24d-b2335908329c.jpg
+2025-07-08 20:25:16,265 - __main__ - INFO - Visualization generation request
+2025-07-08 20:27:05,561 - __main__ - INFO - Photo upload request received
+2025-07-08 20:27:06,184 - __main__ - INFO - Photo processed successfully (mock storage): user_ac7e198d-2405-4005-8487-5e1226d3658b.jpg
+2025-07-08 20:27:06,195 - __main__ - INFO - Visualization generation request
+2025-07-08 20:30:25,517 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 20:37:21,667 - __main__ - INFO - Photo upload request received
+2025-07-08 20:37:22,359 - __main__ - INFO - Photo processed successfully (mock storage): user_f7960b6a-f7ee-4ea8-8fea-43d975b43c9e.jpg
+2025-07-08 20:37:22,374 - __main__ - INFO - Visualization generation request: user_photo_url='https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo' destination_id=None prompt=None
+2025-07-08 20:37:22,377 - __main__ - INFO - Raw request data: {'user_photo_url': 'https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo', 'destination_id': None, 'prompt': None}
+2025-07-08 20:37:22,378 - __main__ - INFO - Extracted prompt: None
+2025-07-08 20:43:05,884 - __main__ - INFO - Photo upload request received
+2025-07-08 20:43:06,231 - __main__ - INFO - Photo processed successfully (mock storage): user_d14a7e25-c329-41ef-9813-d48a47d08a29.jpg
+2025-07-08 20:43:06,240 - __main__ - INFO - Visualization generation request: user_photo_url='https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo' destination_id=None prompt=None
+2025-07-08 20:43:06,241 - __main__ - INFO - Raw request data: {'user_photo_url': 'https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo', 'destination_id': None, 'prompt': None}
+2025-07-08 20:43:06,241 - __main__ - INFO - Extracted prompt: None
+2025-07-08 20:43:22,607 - __main__ - INFO - Photo upload request received
+2025-07-08 20:43:23,307 - __main__ - INFO - Photo processed successfully (mock storage): user_a7121c73-be4a-4877-83ea-a9d71f96ecae.jpg
+2025-07-08 20:43:23,317 - __main__ - INFO - Visualization generation request: user_photo_url='https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo' destination_id=None prompt=None
+2025-07-08 20:43:23,317 - __main__ - INFO - Raw request data: {'user_photo_url': 'https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo', 'destination_id': None, 'prompt': None}
+2025-07-08 20:43:23,318 - __main__ - INFO - Extracted prompt: None
+2025-07-08 21:36:03,751 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 21:42:32,917 - __main__ - INFO - Photo upload request received
+2025-07-08 21:42:33,380 - __main__ - INFO - Photo processed successfully (mock storage): user_32a1eab8-61c7-436e-a757-68827aa2a4c4.jpg
+2025-07-08 21:42:33,392 - __main__ - INFO - Visualization generation request: user_photo_url='https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo' destination_id=None prompt=None
+2025-07-08 21:42:33,394 - __main__ - INFO - Raw request data: {'user_photo_url': 'https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo', 'destination_id': None, 'prompt': None}
+2025-07-08 21:42:33,395 - __main__ - INFO - Extracted prompt: None
+2025-07-08 21:56:03,123 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 21:58:47,326 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 22:00:01,399 - __main__ - INFO - Photo upload request received
+2025-07-08 22:00:01,716 - __main__ - INFO - Photo processed successfully (mock storage): user_f79da2b4-652c-49df-8c8a-ae484737c60a.jpg
+2025-07-08 22:00:01,726 - __main__ - INFO - Visualization generation request: user_photo_url='https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo' destination_id=None prompt=None
+2025-07-08 22:00:01,728 - __main__ - INFO - Raw request data: {'user_photo_url': 'https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Uploaded+Photo', 'destination_id': None, 'prompt': None}
+2025-07-08 22:00:01,728 - __main__ - INFO - Extracted prompt: None
+2025-07-08 22:00:01,728 - __main__ - INFO - Final prompt value: '' (length: 0)
+2025-07-08 22:00:01,728 - __main__ - ERROR - Both prompt and destination_id are missing. Prompt: 'None', destination_id: 'None'
+2025-07-08 22:06:11,975 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 22:07:27,282 - __main__ - ERROR - Failed to initialize Supabase client: Client.__init__() got an unexpected keyword argument 'proxy'
+2025-07-08 22:07:48,159 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/config "HTTP/1.1 200 OK"
+2025-07-08 22:07:50,398 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/info?serialize=False "HTTP/1.1 200 OK"
+2025-07-08 22:07:52,246 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/heartbeat/77ab67e9-6830-42e7-939f-96ab23be0838 "HTTP/1.1 200 OK"
+2025-07-08 22:07:54,404 - httpx - INFO - HTTP Request: POST https://multimodalart-ip-adapter-faceid.hf.space/upload "HTTP/1.1 200 OK"
+2025-07-08 22:07:56,237 - httpx - INFO - HTTP Request: POST https://multimodalart-ip-adapter-faceid.hf.space/queue/join "HTTP/1.1 200 OK"
+2025-07-08 22:07:57,913 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/queue/data?session_hash=77ab67e9-6830-42e7-939f-96ab23be0838 "HTTP/1.1 200 OK"
+2025-07-08 22:08:04,201 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/file=/tmp/gradio/bbfb50d015daaaf281c67a886e3593c01f6f1274/image.webp "HTTP/1.1 200 OK"
+2025-07-08 22:08:06,111 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/file=/tmp/gradio/85d084527480eb8a6924fc3c1e6f595c5b8c67f9/image.webp "HTTP/1.1 200 OK"
+2025-07-08 22:08:08,414 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/file=/tmp/gradio/7db06967a88b187fefa689f3bfc15fa7db468653/image.webp "HTTP/1.1 200 OK"
+2025-07-08 22:08:10,243 - httpx - INFO - HTTP Request: GET https://multimodalart-ip-adapter-faceid.hf.space/file=/tmp/gradio/03edab7f29183e6ac16b75dbbc08ceaee942a866/image.webp "HTTP/1.1 200 OK"

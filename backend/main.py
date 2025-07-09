@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, Depends, status, Request
+from fastapi import FastAPI, UploadFile, File, HTTPException, Depends, status, Request, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
@@ -17,6 +17,9 @@ from datetime import datetime
 import time
 from openai import OpenAI
 from gradio_client import Client as GradioClient, handle_file
+from pathlib import Path
+import shutil
+from fastapi.staticfiles import StaticFiles
 # Load environment variables
 load_dotenv()
 
@@ -77,6 +80,9 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+# Serve static files (for generated images)
+app.mount("/static", StaticFiles(directory="backend/static"), name="static")
 
 # Enhanced CORS for production
 app.add_middleware(
@@ -915,18 +921,22 @@ async def get_continents():
 async def generate_visualization(
     data: VisualizationRequest
 ):
-    logger.info(f"Visualization generation request")
+    logger.info(f"Visualization generation request: {data}")
     try:
+        # Log the raw data and prompt
+        logger.info(f"Raw request data: {data.dict()}")
+        logger.info(f"Extracted prompt: {getattr(data, 'prompt', None)}")
         # If prompt is provided, use it directly
-        prompt = data.prompt.strip() if data.prompt else None
+        prompt = data.prompt.strip() if getattr(data, 'prompt', None) is not None and isinstance(data.prompt, str) and data.prompt.strip() else ""
         destination = None
+        logger.info(f"Final prompt value: '{prompt}' (length: {len(prompt)})")
         if not prompt:
             # Get destination - try database first, then fallback to mock data
             if data.destination_id:
                 if supabase:
                     try:
                         dest_result = supabase.table("destinations").select("*").eq("id", data.destination_id).execute()
-                        if dest_result.data:
+                        if dest_result and hasattr(dest_result, 'data') and dest_result.data:
                             destination = dest_result.data[0]
                     except Exception as e:
                         logger.warning(f"Database query failed: {e}")
@@ -993,9 +1003,10 @@ async def generate_visualization(
                     )
                 prompt = f"A person standing in {destination['name']}, {destination['country']}, with a beautiful travel photo. The scene should be realistic and show the person enjoying the destination."
             else:
+                logger.error(f"Both prompt and destination_id are missing. Prompt: '{getattr(data, 'prompt', None)}', destination_id: '{getattr(data, 'destination_id', None)}'")
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Either prompt or destination_id must be provided."
+                    detail="Either prompt or destination_id must be provided. Please enter a description of your desired scene or select a destination."
                 )
         result_url = None
         hf_error = None
@@ -1012,7 +1023,7 @@ async def generate_visualization(
             hf_client = GradioClient("multimodalart/Ip-Adapter-FaceID", hf_token=os.getenv("HUGGINGFACE_TOKEN"))
             hf_result = hf_client.predict(
                 images=[handle_file(temp_img_path)],
-                prompt=prompt,
+                prompt=prompt if prompt else "",
                 negative_prompt="naked, bikini, skimpy, scanty, bare skin, lingerie, swimsuit, exposed, see-through",
                 preserve_face_structure=True,
                 face_strength=1.3,
@@ -1021,7 +1032,7 @@ async def generate_visualization(
                 api_name="/generate_image"
             )
             # hf_result is a list of dicts with 'image' key (file path)
-            if hf_result and isinstance(hf_result, list) and 'image' in hf_result[0]:
+            if hf_result and isinstance(hf_result, list) and len(hf_result) > 0 and isinstance(hf_result[0], dict) and 'image' in hf_result[0]:
                 # Upload the image to a public location or serve it from backend
                 # For now, return the local file path (not ideal for production)
                 result_url = f"/static/generated/{os.path.basename(hf_result[0]['image'])}"
@@ -1041,12 +1052,12 @@ async def generate_visualization(
             try:
                 response = openai_client.images.generate(
                     model="dall-e-3",
-                    prompt=prompt,
+                    prompt=prompt if prompt else "",
                     size="1024x1024",
                     quality="standard",
                     n=1,
                 )
-                result_image_url = response.data[0].url
+                result_image_url = response.data[0].url if response and hasattr(response, 'data') and response.data and len(response.data) > 0 else None
                 if not result_image_url:
                     raise HTTPException(
                         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
@@ -1350,7 +1361,7 @@ async def generate_text_to_image(
         # Try OpenAI DALL-E first (better quality)
         try:
             # Prepare the prompt with style if specified
-            prompt = data.prompt
+            prompt = data.prompt.strip() if data.prompt is not None and isinstance(data.prompt, str) else data.prompt
             if data.style:
                 style_mappings = {
                     'artistic': 'in an artistic style',
@@ -2068,6 +2079,63 @@ async def general_exception_handler(request, exc):
         content=jsonable_encoder(error_response)
     )
 
+# --- Begin: AI Photo App Integration ---
+def generate_ai_image(selfie_path: Path, prompt: str) -> list[str]:
+    from gradio_client import Client, handle_file
+    import os
+    token = os.getenv("HUGGINGFACE_TOKEN") or "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"
+    client = Client("multimodalart/Ip-Adapter-FaceID", hf_token=token)
+    try:
+        result = client.predict(
+            images=[handle_file(str(selfie_path))],
+            prompt=prompt if prompt else "",
+            negative_prompt="",
+            preserve_face_structure=True,
+            face_strength=1.3,
+            likeness_strength=1.0,
+            nfaa_negative_prompt="naked, bikini, skimpy, scanty, bare skin, lingerie, swimsuit, exposed, see-through",
+            api_name="/generate_image"
+        )
+        if not result or not isinstance(result, list) or len(result) == 0:
+            raise ValueError("Unexpected response structure from Hugging Face")
+        image_urls = []
+        uploads_dir = Path(__file__).parent / "static" / "uploads"
+        uploads_dir.mkdir(exist_ok=True)
+        for i, item in enumerate(result):
+            if item and isinstance(item, dict) and "image" in item and item["image"]:
+                image_path = item["image"]
+                dest_filename = f"generated_{i+1}_{os.path.basename(image_path)}"
+                dest_path = uploads_dir / dest_filename
+                shutil.copy(image_path, dest_path)
+                image_urls.append(f"/static/uploads/{dest_filename}")
+        if not image_urls:
+            raise ValueError("No images found in result")
+        return image_urls
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"AI Photo App generation failed: {str(e)}")
+
+@app.post("/api/generate-photo-app-image")
+async def generate_photo_app_image(
+    selfie: UploadFile = File(...),
+    prompt: str = Form(...)
+):
+    try:
+        uploads_dir = Path(__file__).parent / "static" / "uploads"
+        uploads_dir.mkdir(exist_ok=True)
+        filename = selfie.filename or "uploaded.jpg"
+        upload_path = uploads_dir / filename
+        with open(upload_path, "wb") as buffer:
+            shutil.copyfileobj(selfie.file, buffer)
+        safe_prompt = prompt.strip() if prompt is not None and isinstance(prompt, str) else ""
+        image_urls = generate_ai_image(upload_path, safe_prompt)
+        return {"success": True, "image_urls": image_urls}
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return {"success": False, "error": str(e)}
+# --- End: AI Photo App Integration ---
 
 if __name__ == "__main__":
     import uvicorn
